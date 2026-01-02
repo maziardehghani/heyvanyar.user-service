@@ -14,15 +14,8 @@ use App\Http\Resources\SettlementResource;
 use App\Http\Resources\TicketResource;
 use App\Http\Resources\TransactionResource;
 use App\Http\Resources\UserResource;
-use App\Repositories\AdsRepository;
-use App\Repositories\ContractRepository;
-use App\Repositories\FileRepository;
-use App\Repositories\PaymentRepository;
-use App\Repositories\SettlementRepository;
-use App\Repositories\TicketRepository;
-use App\Repositories\TransactionRepository;
+
 use App\Repositories\UserRepository;
-use App\Traits\ApiResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -67,7 +60,7 @@ class UserController extends Controller
     }
 
 
-    
+
 
     public function userPayments(): JsonResponse
     {

@@ -18,7 +18,7 @@ Route::prefix('roles')->group(callback: function () {
     Route::get('/', [RolesController::class, 'index']);
     Route::post('/', [RolesController::class, 'store']);
     Route::put('/{role}', [RolesController::class, 'update']);
-    Route::delete('/{role}', [RolesController::class, 'delete']);
+    Route::delete('/delete/{id}', [RolesController::class, 'delete']);
     Route::post('/assign/{user}', [RolesController::class, 'assignRole']);
     Route::post('/remove/{user}', [RolesController::class, 'revokeRole']);
     Route::post('/givePermission/{role}', [RolesController::class, 'givePermission']);

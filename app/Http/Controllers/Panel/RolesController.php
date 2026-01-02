@@ -10,11 +10,8 @@ use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
 use App\Repositories\RoleRepository;
-use App\Traits\ApiResponse;
-use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\UnauthorizedException;
-use PhpParser\Node\Expr\Throw_;
 use Symfony\Component\HttpFoundation\Response;
 
 class RolesController extends Controller
@@ -22,7 +19,7 @@ class RolesController extends Controller
 
     public function index(): JsonResponse
     {
-        return response()->success(RoleRepository::getAll(), Response::HTTP_OK, 'لیست نقش ها با موفقیت دریافت شد');
+        return response()->success(RoleRepository::getAll());
     }
 
 
@@ -42,9 +39,9 @@ class RolesController extends Controller
 
     public function store(RoleRequest $request): JsonResponse
     {
-        RoleRepository::store($request->validated());
+        $role = RoleRepository::store($request->validated());
 
-        return response()->success('', Response::HTTP_CREATED, 'نقش با موفقیت ذخیره شد');
+        return response()->success($role);
     }
 
 
@@ -52,10 +49,9 @@ class RolesController extends Controller
     public function update(RoleRequest $request, Role $role): JsonResponse
     {
 
-        RoleRepository::update($request->validated(), $role);
+       $result = RoleRepository::update($request->validated(), $role);
 
-        return response()->success('', Response::HTTP_CREATED, 'نقش با موفقیت بروز رسانی شد');
-
+        return response()->success($result, Response::HTTP_CREATED, 'نقش با موفقیت بروز رسانی شد');
 
     }
 
@@ -63,8 +59,7 @@ class RolesController extends Controller
 
     public function delete(Role $role): JsonResponse
     {
-
-        return response()->success(RoleRepository::delete($role), Response::HTTP_OK, 'نقش با موفقیت حذف شد');
+        return response()->success(RoleRepository::delete($role));
     }
 
 

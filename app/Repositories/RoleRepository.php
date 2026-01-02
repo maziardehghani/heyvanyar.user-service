@@ -21,6 +21,10 @@ class RoleRepository
     {
         return Role::query()->findOrFail($id);
     }
+    public static function delete(Role $role): bool|null
+    {
+        return $role->delete();
+    }
 
 
     public static function store(array $data): object
