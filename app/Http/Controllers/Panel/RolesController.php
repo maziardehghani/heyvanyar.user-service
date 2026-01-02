@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Repositories\RoleRepository;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Validation\UnauthorizedException;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -63,19 +64,21 @@ class RolesController extends Controller
     }
 
 
-    public function assignRole(User $user, RoleRequest $request): JsonResponse
+    public function assignRole(User $user, Request $request): JsonResponse
     {
 
-        $user->assignRole(RoleRepository::getByName($request->role));
-        return response()->success('', Response::HTTP_ACCEPTED, 'نقش مورد نظر به کاربر اعطا شد');
+       $result = $user->assignRole(RoleRepository::getByName($request->role));
+
+        return response()->success($result);
     }
 
 
-    public function revokeRole(User $user, RoleRequest $request): JsonResponse
+    public function revokeRole(User $user, Request $request): JsonResponse
     {
 
         $user->removeRole(RoleRepository::getByName($request->role));
-        return response()->success('', Response::HTTP_ACCEPTED, 'نقش مورد نظر از کاربر گرفته شد');
+
+        return response()->success('');
 
     }
 
@@ -83,9 +86,9 @@ class RolesController extends Controller
     public function givePermission($role, PermissionRequest $request): JsonResponse
     {
 
-        RoleRepository::givePermissionsToRole($role, $request->permissions);
+        $result = RoleRepository::givePermissionsToRole($role, $request->permissions);
 
-        return response()->success('', Response::HTTP_ACCEPTED, 'مجوز مورد نظر به نقش داده شد');
+        return response()->success($result);
 
     }
 
@@ -93,20 +96,19 @@ class RolesController extends Controller
 
     public function revokePermission(Permission $permission, RoleRequest $request): JsonResponse
     {
-
         $role = RoleRepository::getByName($request->role);
-        $role->revokePermissionTo($permission->name);
+        $result = $role->revokePermissionTo($permission->name);
 
-        return response()->success('', Response::HTTP_ACCEPTED, 'مجوز مورد نظر لغو شد');
+        return response()->success($result);
 
     }
 
-    public function role_permissions($role): JsonResponse
+    public function rolePermissions(Role $role): JsonResponse
     {
 
         $permissions = RoleRepository::getPermissionsByRole($role);
 
-        return response()->success(PermissionResource::collection($permissions), Response::HTTP_OK, 'لیست رول ها با موفقیت دریافت شد');
+        return response()->success(PermissionResource::collection($permissions));
     }
 
 

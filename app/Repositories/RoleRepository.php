@@ -42,17 +42,18 @@ class RoleRepository
         ]);
     }
 
-    public static function givePermissionsToRole($role, $permissions): void
+    public static function givePermissionsToRole($role, $permissions): mixed
     {
         $role = self::get($role);
 
-        $role->syncPermissions($permissions);
+        return $role->syncPermissions($permissions);
     }
 
     public static function getPermissionsByRole($role): object
     {
-        $role =self::get($role);
+        $role = self::get($role->id);
 
         return $role->permissions;
     }
 }
+ 
