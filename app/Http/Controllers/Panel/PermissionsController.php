@@ -13,32 +13,18 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PermissionsController extends Controller
 {
-    use ApiResponse;
 
-    private object $PermissionRepo;
-
-    public function __construct(PermissionRepository $PermissionRepo)
-    {
-        $this->PermissionRepo = $PermissionRepo;
-    }
-
-    /**
-     * @throws AuthorizationException
-     */
     public function index(): JsonResponse
     {
-        $this->authorize('index', Permission::class);
-        return $this->successResponse($this->PermissionRepo->getAll(), Response::HTTP_OK, 'لیست مجوز ها با موفقیت دریافت شد');
+        $permissions = PermissionRepository::getAll();
+
+        return response()->success($permissions );
     }
 
-    /**
-     * @throws AuthorizationException
-     */
+
     public function show(Permission $permission): JsonResponse
     {
-        $this->authorize('show', Permission::class);
-
-        return $this->successResponse($permission, Response::HTTP_OK, 'نقش مورد نظر یافت شد');
+        return response()->success($permission);
     }
 
 

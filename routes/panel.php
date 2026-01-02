@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Panel\UserController;
 use App\Http\Controllers\Panel\RolesController;
+use App\Http\Controllers\Panel\PermissionsController;
 
 
 
@@ -25,3 +26,13 @@ Route::prefix('roles')->group(callback: function () {
     Route::post('/revoke-permission/{role}', [RolesController::class, 'revokePermission']);
     Route::get('/permissions/{role}', [RolesController::class, 'rolePermissions']);
 });
+
+
+
+////////////////permissions///////////////////////////////////////
+Route::prefix('permissions')->group(function () {
+    Route::get('/', [PermissionsController::class, 'index']);
+    Route::get('/show/{permission}', [PermissionsController::class, 'show']);
+});
+
+
