@@ -8,10 +8,12 @@ use App\Http\Controllers\Panel\PermissionsController;
 
 
 Route::get('/', [UserController::class, 'index']);
-Route::get('show/{id}', [UserController::class, 'show']);
+Route::get('get/{id}', [UserController::class, 'show']);
+Route::get('show/by-mobile/{mbile}', [UserController::class, 'getByMobile']);
 Route::get('detail/{id}', [UserController::class, 'detail']);
 Route::put('/{user}', [UserController::class, 'update']);
 Route::get('admins', [UserController::class, 'admins']);
+Route::get('list/', [UserController::class, 'usersList']);
 
 
 

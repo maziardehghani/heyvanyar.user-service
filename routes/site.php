@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
     Route::put('/update', [UserController::class, 'update']);
     Route::get('contracts', [UserController::class, 'user_contracts']);
     Route::get('contract-list', [UserController::class, 'user_contract_list']);
-    Route::get('payments', [UserController::class, 'userPayments']);
+    // Route::get('payments', [UserController::class, 'userPayments']);
     Route::get('tickets', [UserController::class, 'userTickets']);
     Route::get('transactions', [UserController::class, 'userTransactions']);
     Route::get('inventory', [UserController::class, 'user_inventory']);

@@ -20,20 +20,20 @@ class UsersSeeder extends Seeder
                 'mobile' => '09931591988',
                 'password' => ''
             ],
-//            'ali' => [
-//                'mobile' => '9217332763',
-//                'password' => '12345678'
-//            ],
+           'ali' => [
+               'mobile' => '9217332763',
+               'password' => '12345678'
+           ],
 
-//            'arman' => [
-//                'mobile' => '9338057197',
-//                'password' => '12345678'
-//            ],
-//
-//            'mahdie' => [
-//                'mobile' => '9373803724',
-//                'password' => '12345678'
-//            ]
+           'arman' => [
+               'mobile' => '9338057197',
+               'password' => '12345678'
+           ],
+
+           'mahdie' => [
+               'mobile' => '9373803724',
+               'password' => '12345678'
+           ]
 
         ];
 

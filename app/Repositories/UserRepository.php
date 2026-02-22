@@ -29,6 +29,11 @@ class UserRepository
         return User::where(User::ID, $id)->first();
     }
 
+    public static function getUsersByIds(array $ids)
+    {
+        return User::whereIn(User::ID, $ids)->get();
+    }
+
 
     public static function getByMobile($mobile)
     {

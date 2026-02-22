@@ -26,6 +26,7 @@ class RolesController extends Controller
 
     public function authorize(): JsonResponse
     {
+
         $roles = Role::all();
 
         if(!auth()->user()->hasRole($roles))
